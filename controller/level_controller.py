@@ -8,7 +8,8 @@ import controller.player_controller as Player
 
 
 def get_random_coordinates():
-    return randint(0, BOARD_HEIGHT-1), randint(0, BOARD_WIDTH-1)
+    return randint(1, BOARD_HEIGHT - 2), randint(1, BOARD_WIDTH - 2)
+
 
 def get_random_path(board):
     position_x = None
@@ -27,9 +28,11 @@ def put_on_board(board, position_x, position_y, icon):
     return board
 
 
-def put_enemies_on_board(board,enemy_icon):
+def put_enemies_on_board(board, enemy_icon):
     start_enemy_position_x, start_enemy_position_y = get_random_path(board)
-    board=put_on_board(board,start_enemy_position_x, start_enemy_position_y,enemy_icon)
+    board = put_on_board(
+        board, start_enemy_position_x, start_enemy_position_y, enemy_icon
+    )
     return board
     # '''
     # Modifies the game board by placing the player icon at its coordinates.
@@ -50,7 +53,7 @@ def level():
     board = levels.create_board(BOARD_WIDTH, BOARD_HEIGHT)
     board = levels.create_forest(board, 10, player.position_x, player.position_y)
     for i in range(10):
-        board=put_enemies_on_board(board, str(ENEMIES["small"]["icon"]))
+        board = put_enemies_on_board(board, str(ENEMIES["small"]["icon"]))
 
     util.clear_screen()
     is_running = True
@@ -58,11 +61,13 @@ def level():
         board = put_on_board(board, player.position_x, player.position_y, player.icon)
         ui.display_board(board)
         key = util.key_pressed()
-        if key == 'q':
+        if key == "q":
             is_running = False
         else:
             util.clear_screen()
             player.movement(board, key)
-            board = put_on_board(board, player.position_x, player.position_y, player.icon)
+            board = put_on_board(
+                board, player.position_x, player.position_y, player.icon
+            )
             ui.display_board(board)
         util.clear_screen()
