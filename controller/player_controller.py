@@ -42,12 +42,14 @@ class Player:
         pass
 
     def colision_reaction(self, position, board):
+        if board[position[0], position[1]] == WALL:
+            return board
         monster = eval(data.search_for_data_in_file(MONSTER_LIST, position))
-        item = eval(data.search_for_data_in_file(ITEM_LIST, position))
+        # item = eval(data.search_for_data_in_file(ITEM_LIST, position))
         if monster != None:
-            board = self.fight_monster(self, monster, board, position)
-        elif item != None:
-            board = self.take_item()
+            board = self.fight_monster(monster, board, position)
+        # elif item != None:
+        #     board = self.take_item()
         return board
 
     def level_up(self):
