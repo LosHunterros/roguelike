@@ -5,6 +5,9 @@ import util
 import view.ui as ui
 import model.levels.level_generator as levels
 import controller.player_controller as Player
+import model.data_manager as data
+
+MONSTER_LIST = "model\monster_list.csv"
 
 
 def get_random_coordinates():
@@ -33,7 +36,7 @@ def put_enemies_on_board(board, enemy_icon):
     board = put_on_board(
         board, start_enemy_position_x, start_enemy_position_y, enemy_icon
     )
-    return board
+    return board, start_enemy_position_x, start_enemy_position_y
     # '''
     # Modifies the game board by placing the player icon at its coordinates.
 
@@ -48,13 +51,22 @@ def put_enemies_on_board(board, enemy_icon):
 
 
 def level():
+
     start_position_x, start_position_y = get_random_coordinates()
-    player = Player.Player(PLAYER_ICON, start_position_x, start_position_y)
+    player = Player.Player(PLAYER_ICON, start_position_x, start_position_y, 1, 10)
     board = levels.create_board(BOARD_WIDTH, BOARD_HEIGHT)
     board = levels.create_forest(board, 10, player.position_x, player.position_y)
+    data.clear_file(MONSTER_LIST)
     for i in range(10):
-        board = put_enemies_on_board(board, str(ENEMIES["small"]["icon"]))
-
+        enemy = ENEMIES["small"]
+        board, x, y = put_enemies_on_board(board, str(enemy["icon"]))
+        single_enemy = {
+            "HP": enemy["HP"],
+            "ATAK": enemy["ATAK"],
+            "EXP": enemy["EX"],
+            "position": [x, y],
+        }
+        data.write_in_file(MONSTER_LIST, single_enemy)
     util.clear_screen()
     is_running = True
     while is_running:
