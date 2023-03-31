@@ -7,8 +7,11 @@ import model.levels.level_generator as levels
 import controller.player_controller as Player
 import controller.enemies_controller as Enemies
 import model.data_manager as data
+import ast
 
 MONSTER_LIST = "model\monster_list.csv"
+ITEM_POSITION = "model\item_position.csv"
+ITEM_DICTIONARY = "model\item_list.txt"
 
 
 def get_random_coordinates():
@@ -54,21 +57,41 @@ def put_enemies_on_board(board, enemy_icon):
 def level():
 
     start_position_x, start_position_y = get_random_coordinates()
-    player = Player.Player(PLAYER_ICON, start_position_x, start_position_y, PLAYER_HP,PLAYER_EXPERIENCE,PLAYER_MAX_EXPERIENCE,PLAYER_MAX_HP,PLAYER_ATTACK)
-    enemy_lvl_1=Enemies.Enemy_lvl_1(ENEMY_LVL_1_ICON, ENEMY_LVL_1_HP,ENEMY_LVL_1_EXPERIENCE,ENEMY_LVL_1_ATTACK)
+    player = Player.Player(start_position_x, start_position_y)
+    enemy_lvl_1 = Enemies.Enemy_lvl_1(
+        ENEMY_LVL_1_ICON, ENEMY_LVL_1_HP, ENEMY_LVL_1_EXPERIENCE, ENEMY_LVL_1_ATTACK
+    )
+    enemy_lvl_2 = Enemies.Enemy_lvl_2(
+        ENEMY_LVL_2_ICON, ENEMY_LVL_2_HP, ENEMY_LVL_2_EXPERIENCE, ENEMY_LVL_2_ATTACK
+    )
     board = levels.create_board(BOARD_WIDTH, BOARD_HEIGHT)
     board = levels.create_forest(board, 10, player.position_x, player.position_y)
     data.clear_file(MONSTER_LIST)
-    for i in range(10):
-        enemy = enemy_lvl_1
-        board, x, y = put_enemies_on_board(board, enemy_lvl_1.icon)
-        single_enemy = {
-            "HP": enemy_lvl_1.HP,
-            "ATAK": enemy_lvl_1.attack,
-            "EXP": enemy_lvl_1.EX,
-            "position": [x, y],
-        }
-        data.write_in_file(MONSTER_LIST, single_enemy)
+    data.clear_file(ITEM_POSITION)
+    for enemy in [enemy_lvl_1, enemy_lvl_2]:
+        for _ in range(10):
+            board, x, y = put_enemies_on_board(board, enemy.icon)
+            single_enemy = {
+                "HP": enemy.HP,
+                "ATAK": enemy.attack,
+                "EXP": enemy.experience,
+                "position": [x, y],
+            }
+            data.write_in_file(MONSTER_LIST, single_enemy)
+
+    items = data.read_file_to_list(ITEM_DICTIONARY)
+    for item in items:
+        item = eval(item)
+        for _ in range(10):
+            board, x, y = put_enemies_on_board(board, item["icon"])
+            single_item = {
+                "heal_HP": item["heal_HP"],
+                "max_HP": item["max_HP"],
+                "ATAK": item["ATAK"],
+                "EX": item["EX"],
+                "position": [x, y],
+            }
+            data.write_in_file(ITEM_POSITION, single_item)
     util.clear_screen()
     is_running = True
     while is_running:

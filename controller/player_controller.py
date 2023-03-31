@@ -6,22 +6,16 @@ ITEM_LIST = ""
 
 
 class Player:
-    def __init__(
-        self,
-        icon: str,
-        posiotion_x: int,
-        posiotion_y: int,
-        atak: int,
-        hp: int,
-    ):
-        self.icon = icon
+    def __init__(self, posiotion_x: int, posiotion_y: int):
+        self.icon = PLAYER_ICON
         self.position_x = posiotion_x
         self.position_y = posiotion_y
-        self.atak = atak
-        self.max_hp = hp
-        self.current_hp = hp
-        self.lv = 1
-        self.exp = 0
+        self.atak = PLAYER_ATTACK
+        self.max_hp = PLAYER_MAX_HP
+        self.current_hp = PLAYER_MAX_HP
+        self.lv = PLAYER_LV
+        self.exp = PLAYER_EXPERIENCE
+        self.exp_nedded = PLAYER_MAX_EXPERIENCE
 
     def no_colision(self, board, position_x: int, position_y: int):
         return board[position_x, position_y] == PATH
@@ -44,7 +38,7 @@ class Player:
     def colision_reaction(self, position, board):
         if board[position[0], position[1]] == WALL:
             return board
-        monster = eval(data.search_for_data_in_file(MONSTER_LIST, position))
+        monster = data.search_for_data_in_file(MONSTER_LIST, position)
         # item = eval(data.search_for_data_in_file(ITEM_LIST, position))
         if monster != None:
             board = self.fight_monster(monster, board, position)

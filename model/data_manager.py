@@ -3,9 +3,15 @@ def write_in_file(file, data):
         f.write(str(data) + "\n")
 
 
+def read_full_file(file):
+    with open(file, "r", encoding="utf8") as f:
+        data = str(f.read())
+        return data
+
+
 def read_file_to_list(file):
-    with open(file, "r") as f:
-        data = f.readlines()
+    with open(file, "r", encoding="utf8") as f:
+        data = f.read().splitlines()
     return data
 
 
@@ -15,7 +21,7 @@ def clear_file(file):
 
 
 def search_for_data_in_file(file, data):
-    with open(file, "r") as f:
+    with open(file, "r", encoding="utf8") as f:
         for line in f:
             if str(data) in str(line):
                 return line.strip("\n")

@@ -20,6 +20,7 @@ class Game_Map:
             self.steps = steps
 
         def replant_trees(self, board, x, y):
+
             place_for_tree = [
                 board[x, y] == PATH,
                 board[x - 1, y] == PATH,
@@ -43,7 +44,12 @@ class Game_Map:
                 board[x + 2, y] == PATH,
                 board[x + 2, y + 1] == PATH,
             ]
-            if all(place_for_tree):
+            for condition in place_for_tree:
+                try:
+                    condition
+                except IndexError:
+                    pass
+            if len(place_for_tree) == 21 and all(place_for_tree):
                 board[x, y] = WALL
                 board[x - 1, y] = WALL
                 board[x, y - 1] = WALL
