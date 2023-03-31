@@ -14,39 +14,48 @@ class Game_Map:
         return board
 
     class Forest:
-        def __init__(self, tree: str, grass: str, steps: int):
+        def __init__(
+            self,
+            tree: str,
+            grass: str,
+            steps: int,
+            start_x,
+            start_y,
+        ):
             self.tree = tree
             self.grass = grass
             self.steps = steps
+            self.start_x = start_x
+            self.start_y = start_y
 
         def replant_trees(self, board, x, y):
-
+            plot = []
             place_for_tree = [
-                board[x, y] == PATH,
-                board[x - 1, y] == PATH,
-                board[x, y - 1] == PATH,
-                board[x, y + 1] == PATH,
-                board[x + 1, y] == PATH,
-                board[x - 2, y] == PATH,
-                board[x - 2, y - 1] == PATH,
-                board[x - 2, y + 1] == PATH,
-                board[x - 1, y - 2] == PATH,
-                board[x - 1, y - 1] == PATH,
-                board[x - 1, y + 2] == PATH,
-                board[x - 1, y + 1] == PATH,
-                board[x, y - 2] == PATH,
-                board[x, y + 2] == PATH,
-                board[x + 1, y - 2] == PATH,
-                board[x + 1, y - 1] == PATH,
-                board[x + 1, y + 1] == PATH,
-                board[x + 1, y + 2] == PATH,
-                board[x + 2, y - 1] == PATH,
-                board[x + 2, y] == PATH,
-                board[x + 2, y + 1] == PATH,
+                [x, y],
+                [x - 1, y],
+                [x, y - 1],
+                [x, y + 1],
+                [x + 1, y],
+                [x - 2, y],
+                [x - 2, y - 1],
+                [x - 2, y + 1],
+                [x - 1, y - 2],
+                [x - 1, y - 1],
+                [x - 1, y + 2],
+                [x - 1, y + 1],
+                [x, y - 2],
+                [x, y + 2],
+                [x + 1, y - 2],
+                [x + 1, y - 1],
+                [x + 1, y + 1],
+                [x + 1, y + 2],
+                [x + 2, y - 1],
+                [x + 2, y],
+                [x + 2, y + 1],
             ]
-            for condition in place_for_tree:
+            for element in place_for_tree:
                 try:
-                    condition
+                    plot.append(board[element[0], element[1] == PATH])
                 except IndexError:
                     pass
             if len(place_for_tree) == 21 and all(place_for_tree):
@@ -58,7 +67,12 @@ class Game_Map:
                 return board, True
             return board, False
 
-        def drunk_troll(self, x: int, y: int, board: list):
+        def drunk_troll(
+            self,
+            board: list,
+        ):
+            x = self.start_x
+            y = self.start_y
             number_of_trees_to_leave = int(np.count_nonzero(board == WALL) * 0.3)
             board[x, y] = self.grass
             y_conditions = [
@@ -115,7 +129,9 @@ class Game_Map:
             j = 0
             while i < 15 or j < 30:
                 x, y = None, None
-                while x == None and y == None:
+                while (
+                    x == None and y == None and x != self.start_x and y != self.start_y
+                ):
                     x, y = lc.get_random_path(board)
                 board, tree_was_planted = self.replant_trees(board, x, y)
                 if tree_was_planted:
@@ -159,8 +175,8 @@ def create_board(width, hight):
     return board
 
 
-def create_forest(board, steps, x, y):
-    forest = Game_Map.Forest(WALL, PATH, steps).drunk_troll(x, y, board)
+def create_forest(board, steps, start_x, start_y):
+    forest = Game_Map.Forest(WALL, PATH, steps, start_x, start_y).drunk_troll(board)
     return forest
 
 

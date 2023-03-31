@@ -78,7 +78,6 @@ def level():
                 "position": [x, y],
             }
             data.write_in_file(MONSTER_LIST, single_enemy)
-
     items = data.read_file_to_list(ITEM_DICTIONARY)
     for item in items:
         item = eval(item)

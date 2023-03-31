@@ -1,2 +1,4 @@
 **/__pycache__
 **/.vscode
+**/monster_list.csv
+**/item_position.csv
