@@ -1,0 +1,38 @@
+    
+    
+    
+    
+    ITEMS = { 
+        "icons": ('🍉','🍎', '🍌','🔪','🧿'),
+        "watermelon": {"icon": '🍉',
+                "add.HP": 2,
+                "ATAK": 0,
+                "EX": 10,
+                },
+        "apple": {"icon": '🍎',
+                "add.HP": 4,
+                "ATAK": 0,
+                "EX": 10,
+                },
+        "banana": {"icon": '🍌',
+                "add.HP": 0 ,
+                "ATAK": 0,
+                "EX": 30,
+                }
+        "knife": {"icon": '🔪',
+                "HP" : 0,
+                "ATAK": 1,
+                "EX": 0,
+                }
+        "medicine": {"icon": '🧿',
+                "add.HP": 10,
+                "ATAK": 0,
+                "EX": 0,
+                }
+        }
+
+         HP +x
+ HP +x
+ XP +x
+ Attack +1
+ Max HP +1
