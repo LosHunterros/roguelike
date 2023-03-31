@@ -1,1 +1,17 @@
-{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [27, 18]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [6, 34]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [17, 28]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [24, 15]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [4, 45]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [25, 50]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [12, 34]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [22, 30]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [21, 42]}{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [11, 46]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [17, 44]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [25, 51]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [21, 38]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [7, 53]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [4, 31]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [23, 35]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [23, 12]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [5, 47]}{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [4, 48]}
+{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [24, 40]}
+{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [15, 22]}
+{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [8, 55]}
+{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [21, 45]}
+{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [6, 41]}
+{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [2, 55]}
+{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [12, 32]}
+{'HP': 2, 'ATAK': 2, 'EXP': 10, 'position': [16, 25]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [14, 31]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [19, 31]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [18, 39]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [2, 5]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [7, 50]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [26, 27]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [3, 14]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [7, 7]}
+{'HP': 4, 'ATAK': 3, 'EXP': 20, 'position': [16, 48]}

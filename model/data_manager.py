@@ -11,7 +11,7 @@ def read_full_file(file):
 
 def read_file_to_list(file):
     with open(file, "r", encoding="utf8") as f:
-        data = f.read().splitlines()
+        data = f.readlines()
     return data
 
 
