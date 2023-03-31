@@ -2,7 +2,7 @@ from config import *
 import model.data_manager as data
 
 MONSTER_LIST = "model\monster_list.csv"
-ITEM_LIST = ""
+ITEM_POSITION = "model\item_position.csv"
 
 
 class Player:
@@ -32,18 +32,26 @@ class Player:
             self.level_up()
         return board
 
-    def take_item(self):
-        pass
+    def take_item(self, item, board, position):
+        board[position[0], position[1]] = PATH
+        if self.current_hp + int(item["heal_HP"]) <= self.max_hp:
+            self.current_hp += int(item["heal_HP"])
+        else:
+            self.current_hp = self.max_hp
+        self.max_hp += int(item["max_HP"])
+        self.atak += int(item["ATAK"])
+        self.exp += int(item["EX"])
+        data.remove_line(MONSTER_LIST, str(position))
 
     def colision_reaction(self, position, board):
         if board[position[0], position[1]] == WALL:
             return board
-        monster = data.search_for_data_in_file(MONSTER_LIST, position)
-        # item = eval(data.search_for_data_in_file(ITEM_LIST, position))
+        monster = eval(str(data.search_for_data_in_file(MONSTER_LIST, position)))
+        item = eval(str(data.search_for_data_in_file(ITEM_POSITION, position)))
         if monster != None:
             board = self.fight_monster(monster, board, position)
-        # elif item != None:
-        #     board = self.take_item()
+        elif item != None:
+            board = self.take_item(item, board, position)
         return board
 
     def level_up(self):
