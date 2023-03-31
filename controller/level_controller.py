@@ -7,7 +7,7 @@ import model.levels.level_generator as levels
 import controller.player_controller as Player
 import controller.enemies_controller as Enemies
 import model.data_manager as data
-import ast
+import time
 
 MONSTER_LIST = "model\monster_list.csv"
 ITEM_POSITION = "model\item_position.csv"
@@ -98,6 +98,11 @@ def level():
         ui.display_board(board, player)
         key = util.key_pressed()
         if key == "q":
+            is_running = False
+        elif player.current_hp <= 0:
+            util.clear_screen()
+            print("Game Over")
+            time.sleep(2)
             is_running = False
         else:
             util.clear_screen()
