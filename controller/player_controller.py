@@ -47,7 +47,6 @@ class Player:
             self.current_hp = self.max_hp
         self.max_hp += int(item["max_HP"])
         self.atak += int(item["ATAK"])
-        self.exp += int(item["EX"])
         data.remove_line(MONSTER_LIST, str(position))
 
     def colision_reaction(self, position, board):

@@ -1,5 +1,5 @@
 {"icon":'🍉',"heal_HP":2,"max_HP":0,"ATAK":0,"EX":10}
 {"icon":'🍎',"heal_HP":4,"max_HP":0,"ATAK":0,"EX":10}
-{"icon":'🍌',"heal_HP":0,"max_HP":0,"ATAK":0,"EX":30}
+{"icon":'🍌',"heal_HP":1,"max_HP":0,"ATAK":0,"EX":30}
 {"icon":'🔪',"heal_HP":0,"max_HP":0,"ATAK":1,"EX":0}
 {"icon":'🧿',"heal_HP":0,"max_HP":10,"ATAK":0,"EX":0}
