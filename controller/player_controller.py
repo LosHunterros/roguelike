@@ -20,16 +20,23 @@ class Player:
     def no_colision(self, board, position_x: int, position_y: int):
         return board[position_x, position_y] == PATH
 
+    def level_up(self):
+        if self.exp >= self.exp_nedded:
+            self.lv += 1
+            self.atak += 1
+            self.max_hp += 2
+            self.exp -= self.exp_nedded
+
     def fight_monster(self, monster, board, position):
         monster["HP"] -= self.atak
+        self.current_hp -= monster["ATAK"]
         if monster["HP"] <= 0:
             board[position[0], position[1]] = PATH
             self.exp += monster["EXP"]
+            self.level_up()
             data.remove_line(MONSTER_LIST, str(position))
         else:
-            self.current_hp -= monster["ATAK"]
             data.update_file(MONSTER_LIST, position, monster)
-            self.level_up()
         return board
 
     def take_item(self, item, board, position):
@@ -53,12 +60,6 @@ class Player:
         elif item != None:
             board = self.take_item(item, board, position)
         return board
-
-    def level_up(self):
-        if self.exp >= 100:
-            self.lv += 1
-            self.atak += 1
-            self.max_hp += 2
 
     def movement(self, board, key: str):
         board[self.position_x, self.position_y] = PATH
