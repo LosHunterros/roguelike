@@ -4,25 +4,26 @@ BOARD_HEIGHT = 30
 PLAYER_ICON = '🧙'
 PLAYER_START_X = 3
 PLAYER_START_Y = 3
+PLAYER_HP = 5
+PLAYER_EXPERIENCE = 0
+PLAYER_MAX_EXPERIENCE = 100
+PLAYER_MAX_HP = 5
+PLAYER_ATTACK = 5
 
 WALL = '⬜'
 PATH = '⬛'
 
-ENEMIES = { 
-        "icons": ('🐁','🦟', '🐸'),
-        "small": {"icon": '🐁',
-                "HP": 2,
-                "ATAK": 2,
-                "EX": 10
-                },
-        "big": {"icon": '🦟',
-                "HP": 4,
-                "ATAK": 3,
-                "EX": 20
-                },
-        "boss": {"icon": '🐸',
-                "HP": 5,
-                "ATAK": 4,
-                "EX": 50
-                }
-        }
+ENEMY_LVL_1_ICON = '🐁'
+ENEMY_LVL_1_HP = 2
+ENEMY_LVL_1_EXPERIENCE = 10
+ENEMY_LVL_1_ATTACK = 2
+
+ENEMY_LVL_2_ICON = '🦟'
+ENEMY_LVL_2_HP = 4
+ENEMY_LVL_2_EXPERIENCE = 20
+ENEMY_LVL_2_ATTACK = 3
+
+BOSS_ICON = '🐸'
+BOSS_HP = 5
+BOSS_EXPERIENCE = 50
+BOSS_ATTACK = 4
