@@ -95,7 +95,7 @@ def level():
     is_running = True
     while is_running:
         board = put_on_board(board, player.position_x, player.position_y, player.icon)
-        ui.display_board(board)
+        ui.display_board(board, player)
         key = util.key_pressed()
         if key == "q":
             is_running = False
@@ -105,5 +105,5 @@ def level():
             board = put_on_board(
                 board, player.position_x, player.position_y, player.icon
             )
-            ui.display_board(board)
+            ui.display_board(board, player)
         util.clear_screen()

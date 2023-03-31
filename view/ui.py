@@ -1,7 +1,7 @@
 from config import *
 import util
 
-def display_board(board):
+def display_board(board, player):
     interface = [""] * BOARD_HEIGHT
     for i, row in enumerate(interface):
         interface[i] = "                                                ⬜"
@@ -11,10 +11,10 @@ def display_board(board):
     interface[3] = util.string_fill("Roguelike Game", 48).upper() + "⬜"
     interface[5] = util.string_fill("Level: x", 48).upper() + "⬜"
     interface[7] = util.string_fill("Player statistics:", 48).upper() + "⬜"
-    interface[8] = util.string_fill("Level: x", 48) + "⬜"
-    interface[9] = util.string_fill("Experience: x", 48) + "⬜"
-    interface[10] = util.string_fill("Healing Points: x/x", 48) + "⬜"
-    interface[11] = util.string_fill("Attack: x", 48) + "⬜"
+    interface[8] = util.string_fill(f"Level: {player.lv}", 48) + "⬜"
+    interface[9] = util.string_fill(f"Experience: {player.exp}/{player.exp_nedded}", 48) + "⬜"
+    interface[10] = util.string_fill(f"Healing Points: {player.current_hp}/{player.max_hp}", 48) + "⬜"
+    interface[11] = util.string_fill(f"Attack: {player.atak}", 48) + "⬜"
     interface[13] = util.string_fill("Creatures:", 48).upper() + "⬜"
     interface[14] = util.string_fill("🐁 HP: x", 47) + "⬜"
     interface[15] = util.string_fill("🐁 HP: x", 47) + "⬜"
