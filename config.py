@@ -13,6 +13,7 @@ PLAYER_LV = 1
 
 WALL = "⬜"
 PATH = "⬛"
+NEXT_LEVEL = "🔽"
 
 ENEMY_LVL_1_ICON = "🐁"
 ENEMY_LVL_1_HP = 2

@@ -25,6 +25,7 @@ def display_board(board, player):
     interface[21] = util.string_fill(f"{ITEM_BANANA_ICON} Heal: {ITEM_BANANA_ADD_HP}", 47) + "⬜"
     interface[22] = util.string_fill(f"{ITEM_KNIFE_ICON} Attack: {ITEM_KNIFE_ATTACK}", 47) + "⬜"
     interface[23] = util.string_fill(f"{ITEM_MEDICINE_ICON} Max Healing Points: {MEDICINE_MAX_HP}", 47) + "⬜"
+    interface[25] = util.string_fill(f"{NEXT_LEVEL}: Next level", 47) + "⬜"
 
     board_list = board.tolist()
     for i, row in enumerate(board_list):

@@ -35,12 +35,12 @@ def put_on_board(board, position_x, position_y, icon):
     return board
 
 
-def put_enemies_on_board(board, enemy_icon):
-    start_enemy_position_x, start_enemy_position_y = get_random_path(board)
+def put_icon_on_board(board, icon):
+    start_icon_position_x, start_icon_position_y = get_random_path(board)
     board = put_on_board(
-        board, start_enemy_position_x, start_enemy_position_y, enemy_icon
+        board, start_icon_position_x, start_icon_position_y, icon
     )
-    return board, start_enemy_position_x, start_enemy_position_y
+    return board, start_icon_position_x, start_icon_position_y
     # '''
     # Modifies the game board by placing the player icon at its coordinates.
 
@@ -70,7 +70,7 @@ def level():
     data.clear_file(ITEM_POSITION)
     for enemy in [enemy_lvl_1, enemy_lvl_2]:
         for _ in range(10):
-            board, x, y = put_enemies_on_board(board, enemy.icon)
+            board, x, y = put_icon_on_board(board, enemy.icon)
             single_enemy = {
                 "HP": enemy.HP,
                 "ATAK": enemy.attack,
@@ -82,7 +82,7 @@ def level():
     for item in items:
         item = eval(item)
         for _ in range(10):
-            board, x, y = put_enemies_on_board(board, item["icon"])
+            board, x, y = put_icon_on_board(board, item["icon"])
             single_item = {
                 "heal_HP": item["heal_HP"],
                 "max_HP": item["max_HP"],
@@ -91,6 +91,8 @@ def level():
                 "position": [x, y],
             }
             data.write_in_file(ITEM_POSITION, single_item)
+    
+    board, x, y = put_icon_on_board(board, NEXT_LEVEL)
     util.clear_screen()
     is_running = True
     while is_running:
