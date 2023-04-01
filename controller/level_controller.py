@@ -93,7 +93,6 @@ def level():
             data.write_in_file(ITEM_POSITION, single_item)
     
     board, x, y = put_icon_on_board(board, NEXT_LEVEL)
-    util.clear_screen()
     is_running = True
     while is_running:
         board = put_on_board(board, player.position_x, player.position_y, player.icon)
@@ -101,16 +100,13 @@ def level():
         key = util.key_pressed()
         if key == "q":
             is_running = False
-        elif player.current_hp <= 0:
-            util.clear_screen()
-            print("Game Over")
-            time.sleep(2)
-            is_running = False
-        else:
-            util.clear_screen()
+        elif key in ["w", "s", "a", "d"]:
             player.movement(board, key)
             board = put_on_board(
                 board, player.position_x, player.position_y, player.icon
             )
             ui.display_board(board, player)
-        util.clear_screen()
+
+        if player.current_hp <= 0:
+            is_running = False
+            ui.display_gameover()
