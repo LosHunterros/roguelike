@@ -23,7 +23,7 @@ def get_random_path(board):
     position_y = None
     while position_x == None or position_y == None:
         position_x, position_y = get_random_coordinates()
-        if board[position_x, position_y] == WALL:
+        if board[position_x, position_y] != PATH:
             position_x = None
             position_y = None
 
