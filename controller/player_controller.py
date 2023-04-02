@@ -18,7 +18,7 @@ class Player:
         self.exp_nedded = PLAYER_MAX_EXPERIENCE
 
     def no_colision(self, board, position_x: int, position_y: int):
-        return board[position_x, position_y] == PATH
+        return board[position_x][position_y] == PATH
 
     def level_up(self):
         if self.exp >= self.exp_nedded:
@@ -31,16 +31,19 @@ class Player:
         monster["HP"] -= self.atak
         self.current_hp -= monster["ATAK"]
         if monster["HP"] <= 0:
-            board[position[0], position[1]] = PATH
+            icon = board[position[0]][position[1]]
+            board[position[0]][position[1]] = PATH
             self.exp += monster["EXP"]
             self.level_up()
             data.remove_line(MONSTER_LIST, str(position))
+            if icon == BOSS_ICON:
+                return False
         else:
             data.update_file(MONSTER_LIST, position, monster)
         return board
 
     def take_item(self, item, board, position):
-        board[position[0], position[1]] = PATH
+        board[position[0]][position[1]] = PATH
         if self.current_hp + int(item["heal_HP"]) <= self.max_hp:
             self.current_hp += int(item["heal_HP"])
         else:
@@ -48,20 +51,24 @@ class Player:
         self.max_hp += int(item["max_HP"])
         self.atak += int(item["ATAK"])
         data.remove_line(MONSTER_LIST, str(position))
+        return board
 
     def colision_reaction(self, position, board):
-        if board[position[0], position[1]] == WALL:
+        if board[position[0]][position[1]] == WALL:
             return board
         monster = eval(str(data.search_for_data_in_file(MONSTER_LIST, position)))
         item = eval(str(data.search_for_data_in_file(ITEM_POSITION, position)))
+        next_level = NEXT_LEVEL if board[position[0]][position[1]] == NEXT_LEVEL else None
         if monster != None:
             board = self.fight_monster(monster, board, position)
         elif item != None:
             board = self.take_item(item, board, position)
+        if next_level:
+            return False
         return board
 
     def movement(self, board, key: str):
-        board[self.position_x, self.position_y] = PATH
+        board[self.position_x][self.position_y] = PATH
         match key:
             case "w":
                 if self.no_colision(board, self.position_x - 1, self.position_y):
@@ -91,3 +98,4 @@ class Player:
                     board = self.colision_reaction(
                         [self.position_x, self.position_y + 1], board
                     )
+        return board

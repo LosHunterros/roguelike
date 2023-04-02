@@ -7,6 +7,7 @@ import controller.level_controller as level
 def main():
     menu.menu()
     level.level()
+    ui.display_win()
 
 
 if __name__ == "__main__":
